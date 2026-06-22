@@ -1,0 +1,9 @@
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid $border-subtle;
+  background: rgba($base-background-color, 0.65);
+}
+
+.site-footer small {
+  color: $color-muted;
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html id="top" lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="stylesheet" href="/styles/main.scss" />
+  </head>
+
+  <body>
+    <a class="skip-link visually-hidden" href="#main-content">
+      Skip to content
+    </a>
+    {{> header}}
+    <main id="main-content" tabindex="-1">
+      {{> section-hero}}
+      {{> section-features}}
+      {{> section-cta}}
+    </main>
+    {{> footer}}
+    <script type="module" src="/js/main.ts"></script>
+  </body>
+
+</html>

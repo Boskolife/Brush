@@ -1,0 +1,39 @@
+{
+  "name": "vite-template-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "webp": "tsx scripts/convertToWebp.ts",
+    "webp:watch": "tsx scripts/convertToWebp.ts --watch"
+  },
+  "overrides": {
+    "vite-plugin-handlebars": {
+      "vite": "^4.5.0"
+    }
+  },
+  "devDependencies": {
+    "@poliklot/prettier-plugin-handlebars": "^0.2.12",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "prettier": "^3.0.3",
+    "sass": "^1.69.5",
+    "sharp": "^0.34.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.5.0",
+    "vite": "^4.4.5",
+    "vite-plugin-handlebars": "^1.6.0"
+  }
+}

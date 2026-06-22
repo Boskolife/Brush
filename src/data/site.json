@@ -1,0 +1,32 @@
+{
+  "brand": "Project",
+  "title": "Project",
+  "description": "",
+  "nav": [],
+  "hero": {
+    "title": "",
+    "text": "",
+    "text2": "",
+    "text3": "",
+    "actions": [],
+    "media": {
+      "image": {
+        "src": "",
+        "alt": "",
+        "className": "hero-image"
+      },
+      "video": { "src": "" },
+      "showVideo": false
+    }
+  },
+  "features": {
+    "title": "",
+    "text": "",
+    "items": []
+  },
+  "cta": {
+    "title": "",
+    "text": "",
+    "backToTopLabel": ""
+  }
+}

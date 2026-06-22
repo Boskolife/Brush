@@ -1,0 +1,54 @@
+<section id="hero" class="hero">
+  <div class="hero__inner">
+    {{#if site.hero.title}}
+      <h1 class="hero__title">
+        {{ site.hero.title }}
+      </h1>
+    {{/if}}
+    {{#if site.hero.text}}
+      <p class="hero__text">
+        {{ site.hero.text }}
+      </p>
+    {{/if}}
+    {{#if site.hero.text2}}
+      <p class="hero__text">
+        {{ site.hero.text2 }}
+      </p>
+    {{/if}}
+    {{#if site.hero.text3}}
+      <p class="hero__text">
+        {{ site.hero.text3 }}
+      </p>
+    {{/if}}
+    {{#if site.hero.actions.length}}
+      <div class="hero__actions">
+        {{#each site.hero.actions}}
+          {{> button
+            label=label
+            href=href
+            variant=variant
+          }}
+        {{/each}}
+      </div>
+    {{/if}}
+    {{#if site.hero.media.image.src}}
+      {{picture
+        site.hero.media.image.src
+        site.hero.media.image.alt
+        class=site.hero.media.image.className
+      }}
+    {{/if}}
+    {{#if site.hero.media.showVideo}}
+      {{#if site.hero.media.video.src}}
+        <video
+          class="hero__video"
+          src="{{ site.hero.media.video.src }}"
+          autoplay
+          loop
+          muted
+          playsinline
+        ></video>
+      {{/if}}
+    {{/if}}
+  </div>
+</section>

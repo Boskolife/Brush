@@ -1,0 +1,38 @@
+<!doctype html>
+<html id="top" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.meta.title }} · {{ site.brand }}</title>
+    <meta name="description" content="{{ page.meta.description }}" />
+    <link rel="stylesheet" href="/styles/main.scss" />
+  </head>
+
+  <body>
+    <a class="skip-link visually-hidden" href="#main-content">
+      Skip to content
+    </a>
+    {{> header}}
+
+    <main id="main-content" tabindex="-1">
+      <section class="section" aria-labelledby="about-title">
+        <div class="container">
+          {{#if page.headline}}
+            <h1 id="about-title" class="section__title">
+              {{ page.headline }}
+            </h1>
+          {{/if}}
+
+          {{#if page.content}}
+            <p class="section__text">
+              {{ page.content }}
+            </p>
+          {{/if}}
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    <script type="module" src="/js/main.ts"></script>
+  </body>
+</html>

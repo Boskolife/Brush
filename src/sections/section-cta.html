@@ -1,0 +1,23 @@
+<section id="cta" class="section" aria-labelledby="cta-title">
+  <div class="container">
+    {{#if site.cta.title}}
+      <h2 id="cta-title" class="section__title">
+        {{ site.cta.title }}
+      </h2>
+    {{/if}}
+
+    {{#if site.cta.text}}
+      <p class="section__text">
+        {{ site.cta.text }}
+      </p>
+    {{/if}}
+
+    {{#if site.cta.backToTopLabel}}
+      {{> button
+        label=site.cta.backToTopLabel
+        href="#top"
+        variant="primary"
+      }}
+    {{/if}}
+  </div>
+</section>

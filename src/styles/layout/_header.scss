@@ -1,0 +1,37 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba($base-background-color, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $border-subtle;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+}
+
+.site-header__brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-header__nav a {
+  padding: 0.35rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.site-header__nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

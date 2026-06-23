@@ -1,17 +1,28 @@
 <section id="hero" class="hero">
+  <div class="container">
   <div class="hero__inner">
-    <h1 class="hero__title">
-      Hero title
-    </h1>
-    <p class="hero__text">
-      Hero text goes here.
-    </p>
-    <div class="hero__actions">
-      {{> button
-        label="Get started"
-        href="#features"
-        variant="primary"
+    <div class="hero__content">
+      <div class="hero__text-wrapper">
+        {{picture
+          "/images/text.png"
+          "Hero image"
+          class="hero__text-1"
+        }}
+        {{picture
+          "/images/hero-arrows.png"
+          "Hero image"
+          class="hero__arrows"
+        }}
+      </div>
+      <button class="hero__btn desktop"><span>Join the waitlist</span></button>
+    </div>
+    <div class="hero__image-wrapper">
+      {{picture
+        "/images/hero-img.png"
+        "Hero image"
+        class="hero__image"
       }}
+      <button class="hero__btn mobile"><span>Join the waitlist</span></button>
     </div>
   </div>
 </section>

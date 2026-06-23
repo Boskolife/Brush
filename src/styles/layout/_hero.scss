@@ -1,83 +1,110 @@
-// Hero section
 .hero {
-  padding: 4rem 1.5rem 5rem;
-  text-align: center;
-  background-color: $base-background-color;
+  padding: 130px 0 70px 0;
 
-  @include media('>=tablet') {
-    padding: 6rem 2rem 8rem;
+  @include media('<tablet') {
+    padding-top: 70px;
   }
-}
 
-.hero__inner {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.hero__title {
-  margin-bottom: 0.5em;
-  font-size: clamp(2rem, 5vw, $h1-font-size);
-  line-height: 1.1;
-  color: $base-text-color;
-
-  @include media('>=tablet') {
-    margin-bottom: 0.35em;
-  }
-}
-
-.hero__text {
-  margin-bottom: 2rem;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: $color-muted;
-
-  @include media('>=tablet') {
-    margin-bottom: 2.5rem;
-    font-size: 1.25rem;
-  }
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero__btn {
-  display: inline-block;
-  padding: $btn-padding;
-  min-width: 10rem;
-  font-size: $btn-font-size;
-  text-align: center;
-  border-radius: 0.25rem;
-  transition: $animation-speed;
-
-  &--primary {
-    color: $btn-color;
-    background-color: $btn-background;
-
-    &:hover {
-      opacity: 0.9;
+  .container {
+    @include media('<tablet') {
+      padding-left: 9px;
     }
   }
 
-  &--secondary {
-    color: $base-text-color;
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    @include media('<desktop') {
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    max-width: 780px;
+    width: 60%;
+
+    @include media('<desktop') {
+      width: 100%;
+    }
+  }
+
+  &__text-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+  }
+
+  &__arrows {
+    position: absolute;
+    top: -15%;
+    left: 0;
+    @include adaptive-value('width', 360, 175, 1);
+  }
+
+  &__btn {
+    background-image: url(../images/btn-bg.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 340px;
+    height: 89px;
+    padding: 0 0 25px 0;
+    border: none;
     background-color: transparent;
-    border: 2px solid $base-text-color;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 900;
+    color: $white;
 
-    &:hover {
-      color: $color-on-dark;
-      background-color: $base-text-color;
+    &:active {
+      background-image: url(../images/btn-bg-click.png);
+    }
+
+    &.desktop {
+      @include media('<desktop') {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      @include media('>=desktop') {
+        display: none;
+      }
+
+      max-width: 375px;
+      width: 100%;
+      margin: 0 auto;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
-}
 
-.hero__video {
-  aspect-ratio: 16/9;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &__image {
+    width: 40%;
+    margin-top: -90px;
+
+    @include media('<desktop') {
+      width: 100%;
+      margin-top: 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
 }

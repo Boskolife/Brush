@@ -1,32 +1,41 @@
 $maxWidth: 1440;
 $maxWidthContainer: 1320;
-$minWidth: 320;
+$minWidth: 393;
 
-@mixin adaptive-value ($property, $startSize, $minSize, $type) {
-    $addSize: $startSize - $minSize;
+@mixin adaptive-value($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
 
-    @if $type==1 {
-        /* Только если меньше контейнера */
-        #{$property}: $startSize + px;
+  @if $type==1 {
+    /* Только если меньше контейнера */
+    #{$property}: $startSize + px;
 
-        @media (max-width: #{$maxWidthContainer + px}) {
-            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - calc(#{$minWidth + px})) / #{$maxWidthContainer - $minWidth}));
-        }
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addSize} *
+          (
+            (100vw - calc(#{$minWidth + px})) / #{$maxWidthContainer - $minWidth}
+          )
+      );
     }
+  } @else if $type==2 {
+    /* Только если больше контейнера */
+    #{$property}: $startSize + px;
 
-    @else if $type==2 {
-        /* Только если больше контейнера */
-        #{$property}: $startSize + px;
-
-        @media (min-width: #{$maxWidthContainer + px}) {
-            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - calc(#{$minWidth + px})) / #{$maxWidth - $minWidth}));
-        }
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addSize} *
+          ((100vw - calc(#{$minWidth + px})) / #{$maxWidth - $minWidth})
+      );
     }
-
-    @else {
-        /* Во всех случаях */
-        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - calc(#{$minWidth + px})) / #{$maxWidth - $minWidth}));
-    }
+  } @else {
+    /* Во всех случаях */
+    #{$property}: calc(
+      #{$minSize +
+        px} +
+        #{$addSize} *
+        ((100vw - calc(#{$minWidth + px})) / #{$maxWidth - $minWidth})
+    );
+  }
 }
 
 /* Init */

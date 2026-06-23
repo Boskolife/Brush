@@ -13,6 +13,8 @@ type PictureHelperHash = {
   loading?: string;
   width?: number | string;
   height?: number | string;
+  mobile?: string;
+  mobileMedia?: string;
   sources?: PictureSource[];
 };
 
@@ -58,12 +60,27 @@ export function pictureHelper(
   const width = hash.width != null ? ` width="${Number(hash.width)}"` : '';
   const height = hash.height != null ? ` height="${Number(hash.height)}"` : '';
   const sources = hash.sources || [];
+  const mobile =
+    hash.mobile != null ? String(hash.mobile).replace(/^\//, '') : '';
+  const mobileMedia =
+    hash.mobileMedia != null
+      ? String(hash.mobileMedia)
+      : '(max-width: 768px)';
 
   const normalized = src.replace(/^\//, '');
   const imgPath = normalized;
   const webpPath = normalized.replace(/\.(png|jpe?g)$/i, '.webp');
 
   let sourcesHtml = '';
+
+  if (mobile) {
+    const mobileWebp = mobile.replace(/\.(png|jpe?g)$/i, '.webp');
+    const escapedMobileMedia = mobileMedia.replace(/"/g, '&quot;');
+
+    sourcesHtml +=
+      `<source media="${escapedMobileMedia}" srcset="${mobileWebp}" type="image/webp">` +
+      `<source media="${escapedMobileMedia}" srcset="${mobile}">`;
+  }
 
   if (Array.isArray(sources) && sources.length > 0) {
     sources.forEach((source) => {

@@ -28,11 +28,7 @@
     @include adaptive-value('margin-bottom', 72, 44, 1);
 
     span {
-      background: linear-gradient(94.54deg, #ad1a1a 4.46%, #227f02 96.12%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
+      @include gradient-text();
     }
   }
 

@@ -64,3 +64,13 @@
     z-index: -1;
   }
 }
+
+@mixin gradient-text(
+  $gradient: linear-gradient(94.54deg, #ad1a1a 4.46%, #227f02 96.12%)
+) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

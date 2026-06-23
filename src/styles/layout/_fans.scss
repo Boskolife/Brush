@@ -17,19 +17,10 @@
   }
 
   &__title {
-    @include adaptive-value('font-size', 72, 36, 1);
-    line-height: calc(76 / 72);
-    text-align: center;
-    font-weight: 900;
     max-width: 925px;
     width: 100%;
     margin: 0 auto;
-    text-transform: uppercase;
     @include adaptive-value('margin-bottom', 72, 44, 1);
-
-    span {
-      @include gradient-text();
-    }
   }
 
   &__inner {

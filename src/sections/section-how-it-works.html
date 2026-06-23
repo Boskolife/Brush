@@ -1,0 +1,157 @@
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="how-it-works__title">
+      How
+      <span>BRUSH</span>
+      works
+    </h2>
+
+    <div class="how-it-works__inner">
+      <div
+        class="how-it-works__items"
+        role="tablist"
+        aria-label="How BRUSH works"
+      >
+        <div class="how-it-works__item is-active">
+          <button
+            type="button"
+            class="how-it-works__trigger"
+            role="tab"
+            id="how-it-works-tab-1"
+            aria-selected="true"
+            aria-controls="how-it-works-panel-1"
+            data-step="0"
+          >
+            <div class="how-it-works__item-content">
+              {{picture
+                "/images/step-label-1.png"
+                "Step label 1"
+                class="how-it-works__item-label"
+              }}
+              <h3 class="how-it-works__item-title">See the call</h3>
+              <p class="how-it-works__item-description">
+                One card, one specific question — not just who wins, the detail that actually decides the game.
+              </p>
+            </div>
+          </button>
+
+          <div class="how-it-works__item-media">
+            {{picture
+              "/images/how-it-works-img-1.png"
+              "How it works step 1"
+              class="how-it-works__image how-it-works__image--mobile"
+            }}
+          </div>
+        </div>
+
+        <div class="how-it-works__item">
+          <button
+            type="button"
+            class="how-it-works__trigger"
+            role="tab"
+            id="how-it-works-tab-2"
+            aria-selected="false"
+            aria-controls="how-it-works-panel-2"
+            data-step="1"
+          >
+            <div class="how-it-works__item-content">
+              {{picture
+                "/images/step-label-2.png"
+                "Step label 2"
+                class="how-it-works__item-label"
+              }}
+              <h3 class="how-it-works__item-title">Make the call</h3>
+              <p class="how-it-works__item-description">
+                Swipe right if you think it happens. Left if you don't. Up if you're not ready to call it yet — no shame in that.
+              </p>
+            </div>
+          </button>
+
+          <div class="how-it-works__item-media">
+            {{picture
+              "/images/how-it-works-img-2.png"
+              "How it works step 2"
+              class="how-it-works__image how-it-works__image--mobile"
+            }}
+          </div>
+        </div>
+
+        <div class="how-it-works__item">
+          <button
+            type="button"
+            class="how-it-works__trigger"
+            role="tab"
+            id="how-it-works-tab-3"
+            aria-selected="false"
+            aria-controls="how-it-works-panel-3"
+            data-step="2"
+          >
+            <div class="how-it-works__item-content">
+              {{picture
+                "/images/step-label-3.png"
+                "Step label 3"
+                class="how-it-works__item-label"
+              }}
+              <h3 class="how-it-works__item-title">Build your streak</h3>
+              <p class="how-it-works__item-description">
+                Right calls stack into a streak. Streaks unlock badges — basically proof you actually know the game, not just that you showed up.
+              </p>
+            </div>
+          </button>
+
+          <div class="how-it-works__item-media">
+            {{picture
+              "/images/how-it-works-img-3.png"
+              "How it works step 3"
+              class="how-it-works__image how-it-works__image--mobile"
+            }}
+          </div>
+        </div>
+      </div>
+
+      <div class="how-it-works__preview" aria-hidden="false">
+        <div
+          id="how-it-works-panel-1"
+          class="how-it-works__panel is-active"
+          role="tabpanel"
+          aria-labelledby="how-it-works-tab-1"
+          aria-hidden="false"
+        >
+          {{picture
+            "/images/how-it-works-img-1.png"
+            "How it works step 1"
+            class="how-it-works__image how-it-works__image--desktop"
+          }}
+        </div>
+
+        <div
+          id="how-it-works-panel-2"
+          class="how-it-works__panel"
+          role="tabpanel"
+          aria-labelledby="how-it-works-tab-2"
+          aria-hidden="true"
+        >
+          {{picture
+            "/images/how-it-works-img-2.png"
+            "How it works step 2"
+            class="how-it-works__image how-it-works__image--desktop"
+          }}
+        </div>
+
+        <div
+          id="how-it-works-panel-3"
+          class="how-it-works__panel"
+          role="tabpanel"
+          aria-labelledby="how-it-works-tab-3"
+          aria-hidden="true"
+        >
+          {{picture
+            "/images/how-it-works-img-3.png"
+            "How it works step 3"
+            class="how-it-works__image how-it-works__image--desktop"
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

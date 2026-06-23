@@ -1,8 +1,10 @@
+import { initHowItWorksSteps } from './how-it-works-steps';
 import { initWaitlistPopup } from './waitlist-popup';
 
 function init(): void {
   document.documentElement.classList.add('js');
   initWaitlistPopup();
+  initHowItWorksSteps();
 }
 
 if (document.readyState === 'loading') {

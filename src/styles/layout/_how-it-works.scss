@@ -1,0 +1,181 @@
+.how-it-works {
+  padding: 112px 0;
+
+  @include media('<tablet') {
+    padding: 72px 0;
+  }
+
+  &__title {
+    @include adaptive-value('margin-bottom', 72, 44, 1);
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 42% 58%;
+    align-items: start;
+    gap: 48px 25px;
+
+    @include media('<tablet') {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 565px;
+    width: 100%;
+
+    @include media('<tablet') {
+      max-width: none;
+      gap: 56px;
+    }
+  }
+
+  &__item {
+    @include media('>=tablet') {
+      opacity: 0.45;
+      transition: opacity 0.3s ease;
+
+      &.is-active {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+
+    @include media('>=tablet') {
+      &:focus-visible {
+        outline: $focus-ring-width solid $focus-ring-color;
+        outline-offset: $focus-ring-offset;
+        border-radius: 12px;
+      }
+    }
+
+    @include media('<tablet') {
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  &__item-content {
+    @include media('<tablet') {
+      text-align: center;
+    }
+  }
+
+  &__item-label {
+    display: inline-block;
+    @include adaptive-value('width', 195, 144, 1);
+    @include adaptive-value('margin-bottom', 20, 12, 1);
+  }
+
+  &__item-title {
+    margin: 0 0 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    @include adaptive-value('font-size', 40, 26, 1);
+  }
+
+  &__item-description {
+    margin: 0;
+    font-weight: 500;
+    line-height: calc(30 / 24);
+    color: #000000a6;
+    @include adaptive-value('font-size', 24, 18, 1);
+  }
+
+  &__item-media {
+    display: none;
+
+    @include media('<tablet') {
+      display: block;
+      margin-top: 24px;
+    }
+  }
+
+  &__preview {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    @include media('<tablet') {
+      display: none;
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.45s ease,
+      visibility 0.45s ease;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      z-index: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    &--mobile {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    &--desktop {
+      height: 100%;
+      transform: scale(0.96);
+      opacity: 0;
+      transition:
+        transform 0.45s ease,
+        opacity 0.45s ease;
+
+      .how-it-works__panel.is-active & {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+        transform: none;
+        opacity: 1;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}

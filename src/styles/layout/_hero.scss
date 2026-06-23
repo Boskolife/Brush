@@ -3,6 +3,7 @@
 
   @include media('<tablet') {
     padding-top: 70px;
+    padding-bottom: 35px;
   }
 
   .container {
@@ -19,6 +20,7 @@
 
     @include media('<desktop') {
       flex-direction: column;
+      gap: 0;
     }
   }
 
@@ -47,15 +49,15 @@
     position: relative;
     width: 40%;
     margin-top: -90px;
-  }
-
-  &__image {
-    display: inline-block;
 
     @include media('<desktop') {
       width: 100%;
       margin-top: 0;
     }
+  }
+
+  &__image {
+    display: inline-block;
 
     img {
       width: 100%;

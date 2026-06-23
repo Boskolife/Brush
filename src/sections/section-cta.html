@@ -1,23 +1,17 @@
 <section id="cta" class="section" aria-labelledby="cta-title">
   <div class="container">
-    {{#if site.cta.title}}
-      <h2 id="cta-title" class="section__title">
-        {{ site.cta.title }}
-      </h2>
-    {{/if}}
+    <h2 id="cta-title" class="section__title">
+      Call to action
+    </h2>
 
-    {{#if site.cta.text}}
-      <p class="section__text">
-        {{ site.cta.text }}
-      </p>
-    {{/if}}
+    <p class="section__text">
+      CTA section text goes here.
+    </p>
 
-    {{#if site.cta.backToTopLabel}}
-      {{> button
-        label=site.cta.backToTopLabel
-        href="#top"
-        variant="primary"
-      }}
-    {{/if}}
+    {{> button
+      label="Back to top"
+      href="#top"
+      variant="primary"
+    }}
   </div>
 </section>

@@ -103,8 +103,7 @@ The project uses `vite-plugin-handlebars` with several useful helpers:
 
 - **`picture`**: generates a `<picture>` with WebP and `<img>` fallback.
   - Parameters: `alt`, `class`, `loading`, `width`, `height`, `sources` (array of additional `<source>` with media conditions).
-- **`array`**: collects passed arguments into an array.
-- **`object`**: creates an object from Handlebars hash parameters.
+- **`year`**: returns the current year for the footer copyright.
 
 Example usage in a template (simplified):
 

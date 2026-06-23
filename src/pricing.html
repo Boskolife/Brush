@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.meta.title }} · {{ site.brand }}</title>
-    <meta name="description" content="{{ page.meta.description }}" />
+    <title>Pricing · Project</title>
+    <meta name="description" content="" />
     <link rel="stylesheet" href="/styles/main.scss" />
   </head>
 
@@ -17,32 +17,7 @@
     <main id="main-content" tabindex="-1">
       <section class="section" aria-labelledby="pricing-title">
         <div class="container">
-          <h1 id="pricing-title" class="section__title">{{ page.headline }}</h1>
-
-          {{#if page.plans.length}}
-            <ul>
-              {{#each page.plans}}
-                <li>
-                  <h2>
-                    {{ name }}
-                    {{#if featured}}
-                      (Most popular)
-                    {{/if}}
-                  </h2>
-                  <p><strong>{{ price }}</strong> {{ period }}</p>
-                  {{#if features.length}}
-                    <ul>
-                      {{#each features}}
-                        <li>
-                          {{ this }}
-                        </li>
-                      {{/each}}
-                    </ul>
-                  {{/if}}
-                </li>
-              {{/each}}
-            </ul>
-          {{/if}}
+          <h1 id="pricing-title" class="section__title">Pricing</h1>
 
           <p><a href="/index.html">← Back to home</a></p>
         </div>

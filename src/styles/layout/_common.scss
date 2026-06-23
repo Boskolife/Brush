@@ -1,5 +1,19 @@
+body {
+  background-image: $body-bg-image,
+    linear-gradient(
+      180deg,
+      $body-bg-gradient-start 0%,
+      $body-bg-gradient-end 100%
+    );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .container {
-  width: min(1120px, calc(100% - 3rem));
+  max-width: 1392px;
+  width: 100%;
+  padding: 0 16px;
   margin-inline: auto;
 }
 

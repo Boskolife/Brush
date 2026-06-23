@@ -1,25 +1,11 @@
 <section id="features" class="section" aria-labelledby="features-title">
   <div class="container">
-    {{#if site.features.title}}
-      <h2 id="features-title" class="section__title">
-        {{upper site.features.title}}
-      </h2>
-    {{/if}}
+    <h2 id="features-title" class="section__title">
+      Features
+    </h2>
 
-    {{#if site.features.text}}
-      <p class="section__text">
-        {{ site.features.text }}
-      </p>
-    {{/if}}
-
-    {{#if site.features.items.length}}
-      <ul>
-        {{#each site.features.items}}
-          <li>
-            {{ this }}
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
+    <p class="section__text">
+      Features section text goes here.
+    </p>
   </div>
 </section>

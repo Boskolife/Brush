@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.meta.title }} · {{ site.brand }}</title>
-    <meta name="description" content="{{ page.meta.description }}" />
+    <title>About · Project</title>
+    <meta name="description" content="" />
     <link rel="stylesheet" href="/styles/main.scss" />
   </head>
 
@@ -17,17 +17,13 @@
     <main id="main-content" tabindex="-1">
       <section class="section" aria-labelledby="about-title">
         <div class="container">
-          {{#if page.headline}}
-            <h1 id="about-title" class="section__title">
-              {{ page.headline }}
-            </h1>
-          {{/if}}
+          <h1 id="about-title" class="section__title">
+            About
+          </h1>
 
-          {{#if page.content}}
-            <p class="section__text">
-              {{ page.content }}
-            </p>
-          {{/if}}
+          <p class="section__text">
+            About page content goes here.
+          </p>
         </div>
       </section>
     </main>

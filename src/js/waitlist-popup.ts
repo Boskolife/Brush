@@ -2,9 +2,28 @@ type PopupView = 'form' | 'done';
 
 const POPUP_ID = 'waitlist-popup';
 const FORM_ID = 'waitlist-form';
+const DONE_AUTO_CLOSE_MS = 5_000;
 const OPEN_SELECTOR = '[data-waitlist-open]';
 const CLOSE_SELECTOR = '[data-popup-close]';
 const VIEW_SELECTOR = '[data-popup-view]';
+
+let doneAutoCloseTimer: ReturnType<typeof setTimeout> | null = null;
+
+function clearDoneAutoCloseTimer(): void {
+  if (doneAutoCloseTimer === null) return;
+
+  clearTimeout(doneAutoCloseTimer);
+  doneAutoCloseTimer = null;
+}
+
+function scheduleDoneAutoClose(): void {
+  clearDoneAutoCloseTimer();
+
+  doneAutoCloseTimer = setTimeout(() => {
+    doneAutoCloseTimer = null;
+    closePopup();
+  }, DONE_AUTO_CLOSE_MS);
+}
 
 function getPopup(): HTMLElement | null {
   return document.getElementById(POPUP_ID);
@@ -42,6 +61,7 @@ function openPopup(trigger?: HTMLElement | null): void {
   const popup = getPopup();
   if (!popup) return;
 
+  clearDoneAutoCloseTimer();
   popup.classList.add('is-open');
   popup.setAttribute('aria-hidden', 'false');
   lockBodyScroll();
@@ -62,6 +82,7 @@ function closePopup(): void {
   const popup = getPopup();
   if (!popup) return;
 
+  clearDoneAutoCloseTimer();
   popup.classList.remove('is-open');
   popup.setAttribute('aria-hidden', 'true');
   unlockBodyScroll();
@@ -80,7 +101,9 @@ function handleFormSubmit(event: SubmitEvent): void {
   event.preventDefault();
 
   const form = event.currentTarget as HTMLFormElement;
-  const emailInput = form.querySelector<HTMLInputElement>('input[type="email"]');
+  const emailInput = form.querySelector<HTMLInputElement>(
+    'input[type="email"]',
+  );
 
   if (!emailInput?.value.trim() || !emailInput.checkValidity()) {
     emailInput?.focus();
@@ -92,6 +115,7 @@ function handleFormSubmit(event: SubmitEvent): void {
   if (!popup) return;
 
   setView(popup, 'done');
+  scheduleDoneAutoClose();
 }
 
 function handleKeydown(event: KeyboardEvent): void {

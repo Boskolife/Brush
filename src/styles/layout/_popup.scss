@@ -68,6 +68,10 @@
     width: 78px;
     margin: 0 auto 20px;
 
+    @include media('<tablet') {
+      width: 68px;
+    }
+
     img {
       width: 100%;
       height: auto;

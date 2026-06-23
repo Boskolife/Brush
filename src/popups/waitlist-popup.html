@@ -1,0 +1,50 @@
+<div id="waitlist-popup" class="popup" aria-hidden="true">
+  <div class="popup__backdrop" data-popup-close></div>
+
+  <div
+    class="popup__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="waitlist-popup-title"
+  >
+    <div class="popup__panel" data-popup-view="form">
+      <a class="popup__logo" href="#hero" data-popup-close>
+        <img
+          src="/images/header-logo.png"
+          alt="Brush"
+          width="120"
+          height="120"
+        />
+      </a>
+
+      <h2 id="waitlist-popup-title" class="popup__title">Join the waitlist</h2>
+
+      <p class="popup__text">
+        Free to join, free to play. No card, no catch — we'll email you the second you're in.
+      </p>
+
+      <form id="waitlist-form" class="popup__form" novalidate>
+        <label class="popup__field">
+          <span class="visually-hidden">Email</span>
+          <span class="popup__field-icon" aria-hidden="true">
+            <img src="/images/mail.svg" alt="Mail" width="24" height="24" />
+          </span>
+          <input
+            class="popup__input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <button class="btn-cta btn-cta--block" type="submit">
+          <span>Join the waitlist</span>
+        </button>
+      </form>
+    </div>
+
+    {{> waitlist-popup-done}}
+  </div>
+</div>

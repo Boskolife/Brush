@@ -1,0 +1,100 @@
+.fans {
+  padding: 112px 0 35px 0;
+
+  @include media('<tablet') {
+    padding: 72px 0 22px 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__label {
+    @include adaptive-value('width', 288, 209, 1);
+  }
+
+  &__title {
+    @include adaptive-value('font-size', 72, 36, 1);
+    line-height: calc(76 / 72);
+    text-align: center;
+    font-weight: 900;
+    max-width: 925px;
+    width: 100%;
+    margin: 0 auto;
+    text-transform: uppercase;
+    @include adaptive-value('margin-bottom', 72, 44, 1);
+
+    span {
+      background: linear-gradient(94.54deg, #ad1a1a 4.46%, #227f02 96.12%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px 54px;
+
+    @include media('<tablet') {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    display: inline-block;
+    width: 50%;
+    height: auto;
+
+    @include media('<tablet') {
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__content {
+    width: 50%;
+
+    @include media('<tablet') {
+      width: 100%;
+    }
+  }
+
+  &__cards {
+    display: inline-block;
+    width: 250px;
+    height: auto;
+    margin-bottom: 40px;
+
+    @include media('<tablet') {
+      display: none;
+    }
+  }
+
+  &__text {
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+    font-weight: 500;
+    line-height: calc(30 / 24);
+    letter-spacing: -0.01em;
+    color: #000000a6;
+    @include adaptive-value('font-size', 24, 18, 1);
+
+    &.bold {
+      font-weight: 700;
+      color: #000000;
+    }
+  }
+}

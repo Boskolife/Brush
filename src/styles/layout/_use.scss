@@ -1,0 +1,48 @@
+.use {
+  padding: 112px 0;
+  overflow: hidden;
+
+  @include media('<tablet') {
+    padding: 72px 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__badge {
+    display: block;
+    margin: 0 auto;
+    @include adaptive-value('width', 210, 150, 1);
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    @include adaptive-value('margin-bottom', 72, 44, 1);
+  }
+
+  &__image {
+    display: inline-block;
+    margin-bottom: 28px;
+    min-width: 550px;
+  }
+
+  &__description {
+    max-width: 590px;
+    width: 100%;
+    margin: 0 auto;
+    @include adaptive-value('font-size', 24, 18, 1);
+    line-height: calc(30 / 24);
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    color: #000000a6;
+    text-align: center;
+
+    b {
+      font-weight: 700;
+      color: #000000;
+    }
+  }
+}

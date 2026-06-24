@@ -8,6 +8,8 @@ const CLOSE_SELECTOR = '[data-popup-close]';
 const VIEW_SELECTOR = '[data-popup-view]';
 
 let doneAutoCloseTimer: ReturnType<typeof setTimeout> | null = null;
+let lastTrigger: HTMLElement | null = null;
+let scrollLockPosition = 0;
 
 function clearDoneAutoCloseTimer(): void {
   if (doneAutoCloseTimer === null) return;
@@ -45,9 +47,14 @@ function getScrollbarWidth(): number {
 }
 
 function lockBodyScroll(): void {
+  scrollLockPosition = window.scrollY;
   document.documentElement.style.setProperty(
     '--scrollbar-width',
     `${getScrollbarWidth()}px`,
+  );
+  document.documentElement.style.setProperty(
+    '--popup-scroll-lock-top',
+    `-${scrollLockPosition}px`,
   );
   document.body.classList.add('is-popup-open');
 }
@@ -55,6 +62,8 @@ function lockBodyScroll(): void {
 function unlockBodyScroll(): void {
   document.body.classList.remove('is-popup-open');
   document.documentElement.style.removeProperty('--scrollbar-width');
+  document.documentElement.style.removeProperty('--popup-scroll-lock-top');
+  window.scrollTo(0, scrollLockPosition);
 }
 
 function openPopup(trigger?: HTMLElement | null): void {
@@ -68,10 +77,7 @@ function openPopup(trigger?: HTMLElement | null): void {
   setView(popup, 'form');
 
   if (trigger) {
-    popup.dataset.lastTrigger = trigger.id || 'waitlist-trigger';
-    if (!trigger.id) {
-      trigger.id = popup.dataset.lastTrigger;
-    }
+    lastTrigger = trigger;
   }
 
   const emailInput = popup.querySelector<HTMLInputElement>('.popup__input');
@@ -91,10 +97,8 @@ function closePopup(): void {
   form?.reset();
   setView(popup, 'form');
 
-  const triggerId = popup.dataset.lastTrigger;
-  if (triggerId) {
-    document.getElementById(triggerId)?.focus();
-  }
+  lastTrigger?.focus({ preventScroll: true });
+  lastTrigger = null;
 }
 
 function handleFormSubmit(event: SubmitEvent): void {
@@ -137,7 +141,10 @@ export function initWaitlistPopup(): void {
   });
 
   popup.querySelectorAll<HTMLElement>(CLOSE_SELECTOR).forEach((element) => {
-    element.addEventListener('click', closePopup);
+    element.addEventListener('click', (event) => {
+      event.preventDefault();
+      closePopup();
+    });
   });
 
   const form = document.getElementById(FORM_ID);

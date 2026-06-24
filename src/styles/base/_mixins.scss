@@ -50,6 +50,7 @@
 
   @include media('<tablet') {
     $border-radius: 32px;
+    $offset: 12px;
   }
 
   &::before {

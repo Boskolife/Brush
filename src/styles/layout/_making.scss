@@ -6,11 +6,41 @@
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
+  position: relative;
 
   @include media('<tablet') {
     padding: 72px 0;
   }
 
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__bg-blur {
+    &-1 {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      @include media('<tablet') {
+        display: none;
+      }
+    }
+
+    &-2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include media('<tablet') {
+        display: none;
+      }
+    }
+  }
   &__header {
     display: flex;
     flex-direction: column;
@@ -70,7 +100,7 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      box-shadow: 0px 0px 80.05px 5px #ffffff;
+      box-shadow: 0px 0px 36px 5px #ffffff;
     }
 
     &-text {

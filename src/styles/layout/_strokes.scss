@@ -70,3 +70,39 @@
     }
   }
 }
+
+.prove {
+  padding-top: 112px;
+
+  @include media('<tablet') {
+    padding-top: 72px;
+  }
+  &__badge {
+    display: block;
+    margin: 0 auto;
+    @include adaptive-value('width', 210, 150, 1);
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    max-width: 925px;
+    width: 100%;
+    margin: 0 auto;
+    @include adaptive-value('margin-bottom', 72, 44, 1);
+  }
+
+  &__image {
+    max-width: 665px;
+    width: 85%;
+  }
+
+  &__description {
+    margin-top: -50px;
+    padding: 70px 80px;
+
+    @include media('<tablet') {
+      margin-top: -30px;
+      padding: 30px 20px 40px 20px;
+    }
+  }
+}

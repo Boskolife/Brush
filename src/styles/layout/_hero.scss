@@ -1,5 +1,6 @@
 .hero {
   padding: 130px 0 70px 0;
+  overflow: hidden;
 
   @include media('<tablet') {
     padding-top: 70px;

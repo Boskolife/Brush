@@ -1,5 +1,34 @@
-<footer id="footer" class="site-footer">
+<footer id="footer" class="footer">
   <div class="container">
-    <small>© {{ year }} Project. All rights reserved.</small>
+    <div class="footer__inner">
+      {{picture
+        "/images/logo.png"
+        "Logo"
+        class="footer__logo"
+      }}
+      <p class="footer__description">
+        BRUSH is a prediction and entertainment app. Strokes are a play currency with no cash value, used for entertainment purposes only — no purchase necessary, no real money involved.
+      </p>
+      <a class="footer__creator" href="https://improvs.com/" target="_blank">
+        Built by
+        <img src="/images/creator.svg" alt="Creator" />
+      </a>
+    </div>
+    <div class="footer__bottom">
+      <p>© All rights reserved.</p>
+      <ul class="footer__socials">
+        <li>
+          <a href="#" target="_blank">
+            <img src="/images/inst.svg" alt="Instagram" />
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank">
+            <img src="/images/tiktok.svg" alt="TikTok" />
+          </a>
+        </li>
+      </ul>
+      <a href="#">Privacy Policy</a>
+    </div>
   </div>
 </footer>

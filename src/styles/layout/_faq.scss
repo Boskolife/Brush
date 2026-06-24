@@ -121,7 +121,7 @@
   }
 
   &__item-description {
-    @include adaptive-value('font-size', 20, 16, 1);
+    @include adaptive-value('font-size', 18, 16, 1);
     line-height: calc(28 / 20);
     letter-spacing: -0.01em;
     font-weight: 500;

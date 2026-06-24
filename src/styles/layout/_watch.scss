@@ -1,0 +1,63 @@
+.watch {
+  padding-top: 112px;
+  padding-bottom: 456px;
+  position: relative;
+
+  @include media('<tablet') {
+    padding-top: 72px;
+    padding-bottom: 0;
+  }
+
+  &__image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    @include media('<tablet') {
+      position: static;
+      margin-top: 40px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1075px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__title {
+    @include adaptive-value('font-size', 88, 36, 1);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  &__description {
+    @include adaptive-value('font-size', 24, 18, 1);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    color: #000000a6;
+    text-align: center;
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto 44px;
+
+    b {
+      font-weight: 700;
+      color: #000000;
+    }
+  }
+}

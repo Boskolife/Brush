@@ -1,12 +1,12 @@
-<section class="making">
+<section class="making" aria-labelledby="making-title">
   {{picture
     "/images/bg-blur-1.png"
-    "Background blur 1"
+    ""
     class="making__bg-blur-1"
   }}
   {{picture
     "/images/bg-blur-2.png"
-    "Background blur 2"
+    ""
     class="making__bg-blur-2"
   }}
   <div class="container">
@@ -16,9 +16,10 @@
         "Making badge"
         class="making__badge"
       }}
-      <h2 class="making__title">
+      <h2 id="making-title" class="making__title">
         There's an
-        <img src="/images/making-icon.svg" alt="Check" />
+        <span class="visually-hidden">AI</span>
+        <img src="/images/making-icon.svg" alt="" aria-hidden="true" />
         making every call too.
         <br />
         See if you agree.

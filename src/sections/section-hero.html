@@ -1,32 +1,36 @@
-<section id="hero" class="hero">
+<section id="hero" class="hero" aria-labelledby="hero-title">
   <div class="container">
-  <div class="hero__inner">
-    <div class="hero__content">
-      <div class="hero__text-wrapper">
-        {{picture
-          "/images/text.png"
-          "Hero image"
-          class="hero__text-1"
-        }}
-        {{picture
-          "/images/hero-arrows.png"
-          "Hero image"
-          class="hero__arrows"
-        }}
+    <div class="hero__inner">
+      <h1 id="hero-title" class="visually-hidden">
+        BRUSH — make your World Cup calls
+      </h1>
+      <div class="hero__content">
+        <div class="hero__text-wrapper">
+          {{picture
+            "/images/text.png"
+            "BRUSH logo and tagline"
+            class="hero__text-1"
+          }}
+          {{picture
+            "/images/hero-arrows.png"
+            ""
+            class="hero__arrows"
+          }}
+        </div>
+        <button class="btn-cta btn-cta--desktop" type="button" data-waitlist-open>
+          <span>Join the waitlist</span>
+        </button>
       </div>
-      <button class="btn-cta btn-cta--desktop" type="button" data-waitlist-open>
-        <span>Join the waitlist</span>
-      </button>
-    </div>
-    <div class="hero__image-wrapper">
-      {{picture
-        "/images/hero-img.png"
-        "Hero image"
-        class="hero__image"
-      }}
-      <button class="btn-cta btn-cta--mobile" type="button" data-waitlist-open>
-        <span>Join the waitlist</span>
-      </button>
+      <div class="hero__image-wrapper">
+        {{picture
+          "/images/hero-img.png"
+          "BRUSH app preview on a phone"
+          class="hero__image"
+        }}
+        <button class="btn-cta btn-cta--mobile" type="button" data-waitlist-open>
+          <span>Join the waitlist</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>

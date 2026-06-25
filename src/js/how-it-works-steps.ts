@@ -1,9 +1,9 @@
 const SECTION_SELECTOR = '.how-it-works';
-const TAB_SELECTOR = '.how-it-works__trigger[role="tab"]';
+const TAB_SELECTOR = '.how-it-works__trigger';
 const PANEL_SELECTOR = '.how-it-works__panel';
 const ITEM_SELECTOR = '.how-it-works__item';
 const PREVIEW_SELECTOR = '.how-it-works__preview';
-const TABLIST_SELECTOR = '.how-it-works__items[role="tablist"]';
+const TABLIST_SELECTOR = '.how-it-works__items';
 const TABLET_MEDIA_QUERY = '(min-width: 768px)';
 
 function isDesktopTabsEnabled(): boolean {
@@ -21,6 +21,7 @@ function activateStep(
 
     tab.classList.toggle('is-active', isActive);
     tab.setAttribute('aria-selected', String(isActive));
+    tab.setAttribute('tabindex', isActive ? '0' : '-1');
   });
 
   items.forEach((item, itemIndex) => {
@@ -45,7 +46,9 @@ function setMobileMode(
   items.forEach((item) => item.classList.add('is-active'));
 
   tabs.forEach((tab) => {
-    tab.setAttribute('aria-selected', 'false');
+    tab.removeAttribute('role');
+    tab.removeAttribute('aria-selected');
+    tab.removeAttribute('aria-controls');
     tab.setAttribute('tabindex', '-1');
   });
 
@@ -68,8 +71,9 @@ function setDesktopMode(
   preview?.setAttribute('aria-hidden', 'false');
   tablist?.setAttribute('role', 'tablist');
 
-  tabs.forEach((tab) => {
-    tab.removeAttribute('tabindex');
+  tabs.forEach((tab, index) => {
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', `how-it-works-panel-${index + 1}`);
   });
 
   activateStep(tabs, items, panels, 0);
@@ -110,6 +114,38 @@ export function initHowItWorksSteps(): void {
 
       activateStep(tabs, items, panels, index);
     });
+  });
+
+  tablist?.addEventListener('keydown', (event) => {
+    if (!isDesktopTabsEnabled()) return;
+
+    const currentIndex = tabs.findIndex(
+      (tab) => tab.getAttribute('aria-selected') === 'true',
+    );
+    let nextIndex = currentIndex;
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        nextIndex = (currentIndex + 1) % tabs.length;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        break;
+      case 'End':
+        nextIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    activateStep(tabs, items, panels, nextIndex);
+    tabs[nextIndex]?.focus();
   });
 
   syncMode();

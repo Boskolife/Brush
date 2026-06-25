@@ -72,6 +72,11 @@
 
     a {
       text-align: end;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #000000;
+      }
 
       @include media('<tablet') {
         order: 3;

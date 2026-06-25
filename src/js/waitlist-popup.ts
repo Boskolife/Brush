@@ -10,10 +10,61 @@ const CLOSE_SELECTOR = '[data-popup-close]';
 const VIEW_SELECTOR = '[data-popup-view]';
 const SUBMIT_LABEL_SELECTOR = '.popup__submit-label';
 const ERROR_SELECTOR = '.popup__error';
+const DIALOG_SELECTOR = '.popup__dialog';
+const FOCUSABLE_SELECTOR =
+  'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
 
 let doneAutoCloseTimer: ReturnType<typeof setTimeout> | null = null;
 let lastTrigger: HTMLElement | null = null;
 let scrollLockPosition = 0;
+let focusTrapHandler: ((event: KeyboardEvent) => void) | null = null;
+
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+  ).filter((element) => {
+    if (element.hasAttribute('hidden')) return false;
+
+    return element.getClientRects().length > 0;
+  });
+}
+
+function trapFocusInDialog(event: KeyboardEvent): void {
+  const popup = getPopup();
+  const dialog = popup?.querySelector<HTMLElement>(DIALOG_SELECTOR);
+  if (!dialog || event.key !== 'Tab') return;
+
+  const focusable = getFocusableElements(dialog);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+    return;
+  }
+
+  if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function enableFocusTrap(): void {
+  if (focusTrapHandler) return;
+
+  focusTrapHandler = trapFocusInDialog;
+  document.addEventListener('keydown', focusTrapHandler);
+}
+
+function disableFocusTrap(): void {
+  if (!focusTrapHandler) return;
+
+  document.removeEventListener('keydown', focusTrapHandler);
+  focusTrapHandler = null;
+}
 
 function clearDoneAutoCloseTimer(): void {
   if (doneAutoCloseTimer === null) return;
@@ -40,10 +91,17 @@ function getViews(popup: HTMLElement): NodeListOf<HTMLElement> {
 }
 
 function setView(popup: HTMLElement, view: PopupView): void {
+  const dialog = popup.querySelector<HTMLElement>('.popup__dialog');
+
   getViews(popup).forEach((panel) => {
     const isActive = panel.dataset.popupView === view;
     panel.hidden = !isActive;
   });
+
+  dialog?.setAttribute(
+    'aria-labelledby',
+    view === 'done' ? 'waitlist-popup-done-title' : 'waitlist-popup-title',
+  );
 }
 
 function getScrollbarWidth(): number {
@@ -86,6 +144,7 @@ function openPopup(trigger?: HTMLElement | null): void {
 
   const emailInput = popup.querySelector<HTMLInputElement>('.popup__input');
   emailInput?.focus();
+  enableFocusTrap();
 }
 
 function clearFormError(form: HTMLFormElement): void {
@@ -123,6 +182,7 @@ function closePopup(): void {
   if (!popup) return;
 
   clearDoneAutoCloseTimer();
+  disableFocusTrap();
   popup.classList.remove('is-open');
   popup.setAttribute('aria-hidden', 'true');
   unlockBodyScroll();
@@ -163,6 +223,11 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
     await submitWaitlistEmail(emailInput.value.trim());
     setView(popup, 'done');
     scheduleDoneAutoClose();
+
+    const doneButton = popup.querySelector<HTMLButtonElement>(
+      '[data-popup-view="done"] .btn-cta',
+    );
+    doneButton?.focus();
   } catch {
     showFormError(
       form,

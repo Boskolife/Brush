@@ -1,6 +1,6 @@
-<section class="how-it-works">
+<section class="how-it-works" aria-labelledby="how-it-works-title">
   <div class="container">
-    <h2 class="how-it-works__title">
+    <h2 id="how-it-works-title" class="how-it-works__title">
       How
       <span>BRUSH</span>
       works
@@ -20,6 +20,7 @@
             role="tab"
             aria-selected="true"
             aria-controls="how-it-works-panel-1"
+            tabindex="0"
             data-step="0"
           >
             <div class="how-it-works__item-content">
@@ -52,6 +53,7 @@
             role="tab"
             aria-selected="false"
             aria-controls="how-it-works-panel-2"
+            tabindex="-1"
             data-step="1"
           >
             <div class="how-it-works__item-content">
@@ -72,7 +74,8 @@
             <div
               class="how-it-works__swipe how-it-works__swipe--mobile"
               data-how-it-works-swipe
-              aria-hidden="true"
+              role="img"
+              aria-label="Animated preview of swiping yes or no on a match card"
             >
               {{> how-it-works-swipe-inner}}
             </div>
@@ -87,6 +90,7 @@
             role="tab"
             aria-selected="false"
             aria-controls="how-it-works-panel-3"
+            tabindex="-1"
             data-step="2"
           >
             <div class="how-it-works__item-content">
@@ -112,7 +116,7 @@
         </div>
       </div>
 
-      <div class="how-it-works__preview" aria-hidden="false">
+      <div class="how-it-works__preview">
         <div
           id="how-it-works-panel-1"
           class="how-it-works__panel is-active"
@@ -137,7 +141,8 @@
           <div
             class="how-it-works__swipe"
             data-how-it-works-swipe
-            aria-hidden="true"
+            role="img"
+            aria-label="Animated preview of swiping yes or no on a match card"
           >
             {{> how-it-works-swipe-inner}}
           </div>

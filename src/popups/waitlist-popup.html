@@ -1,5 +1,11 @@
 <div id="waitlist-popup" class="popup" aria-hidden="true">
-  <div class="popup__backdrop" data-popup-close></div>
+  <button
+    type="button"
+    class="popup__backdrop"
+    data-popup-close
+    aria-label="Close popup"
+    tabindex="-1"
+  ></button>
 
   <div
     class="popup__dialog"
@@ -17,14 +23,14 @@
     </button>
 
     <div class="popup__panel" data-popup-view="form">
-      <a class="popup__logo" href="#hero" data-popup-close>
+      <button type="button" class="popup__logo" data-popup-close aria-label="Close popup">
         <img
           src="/images/logo.png"
-          alt="Brush"
+          alt=""
           width="120"
           height="120"
         />
-      </a>
+      </button>
 
       <h2 id="waitlist-popup-title" class="popup__title">Join the waitlist</h2>
 
@@ -36,7 +42,7 @@
         <label class="popup__field">
           <span class="visually-hidden">Email</span>
           <span class="popup__field-icon" aria-hidden="true">
-            <img src="/images/mail.svg" alt="Mail" width="24" height="24" />
+            <img src="/images/mail.svg" alt="" width="24" height="24" />
           </span>
           <input
             class="popup__input"

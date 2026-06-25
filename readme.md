@@ -147,7 +147,15 @@ VITE_WEBP_CONVERT=false
    - `VITE_WAITLIST_SCRIPT_URL` — Web App URL
    - `VITE_WAITLIST_SCRIPT_TOKEN` — same value as `WAITLIST_SECRET`
 
-For production builds, pass the same variables to your CI/CD environment.
+For production builds, add GitHub repository secrets and push to `main`:
+
+1. Open the repo on GitHub → **Settings → Secrets and variables → Actions**
+2. Add **Repository secrets**:
+   - `VITE_WAITLIST_SCRIPT_URL` — Web App URL (`.../exec`)
+   - `VITE_WAITLIST_SCRIPT_TOKEN` — same value as `WAITLIST_SECRET`
+3. Push to `main` — GitHub Actions will embed these values into the build
+
+Local `.env` is only for `npm run dev`. It is not used on GitHub Pages automatically.
 
 Typical deploy flow:
 

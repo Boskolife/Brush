@@ -16,7 +16,6 @@ const FOCUSABLE_SELECTOR =
 
 let doneAutoCloseTimer: ReturnType<typeof setTimeout> | null = null;
 let lastTrigger: HTMLElement | null = null;
-let scrollLockPosition = 0;
 let focusTrapHandler: ((event: KeyboardEvent) => void) | null = null;
 
 function getFocusableElements(container: HTMLElement): HTMLElement[] {
@@ -109,23 +108,16 @@ function getScrollbarWidth(): number {
 }
 
 function lockBodyScroll(): void {
-  scrollLockPosition = window.scrollY;
   document.documentElement.style.setProperty(
     '--scrollbar-width',
     `${getScrollbarWidth()}px`,
   );
-  document.documentElement.style.setProperty(
-    '--popup-scroll-lock-top',
-    `-${scrollLockPosition}px`,
-  );
-  document.body.classList.add('is-popup-open');
+  document.documentElement.classList.add('is-popup-open');
 }
 
 function unlockBodyScroll(): void {
-  document.body.classList.remove('is-popup-open');
+  document.documentElement.classList.remove('is-popup-open');
   document.documentElement.style.removeProperty('--scrollbar-width');
-  document.documentElement.style.removeProperty('--popup-scroll-lock-top');
-  window.scrollTo(0, scrollLockPosition);
 }
 
 function openPopup(trigger?: HTMLElement | null): void {
@@ -195,8 +187,12 @@ function closePopup(): void {
   }
   setView(popup, 'form');
 
-  lastTrigger?.focus({ preventScroll: true });
+  const trigger = lastTrigger;
   lastTrigger = null;
+
+  requestAnimationFrame(() => {
+    trigger?.focus({ preventScroll: true });
+  });
 }
 
 async function handleFormSubmit(event: SubmitEvent): Promise<void> {

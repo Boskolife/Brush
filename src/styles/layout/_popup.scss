@@ -226,10 +226,12 @@
   }
 }
 
-body.is-popup-open {
-  position: fixed;
-  width: 100%;
-  top: var(--popup-scroll-lock-top, 0);
+html.is-popup-open {
   overflow: hidden;
   padding-right: var(--scrollbar-width, 0);
+}
+
+html.is-popup-open body {
+  overflow: hidden;
+  touch-action: none;
 }

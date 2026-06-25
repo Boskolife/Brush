@@ -59,6 +59,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: './',
     root: 'src',
+    envDir: resolve(__dirname),
     publicDir: '../public',
     plugins: [
       handlebars({

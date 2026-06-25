@@ -15,10 +15,10 @@ export async function submitWaitlistEmail(
   email: string,
 ): Promise<WaitlistSubmitResult> {
   if (!isWaitlistSubmitConfigured()) {
-    console.warn(
+    console.error(
       '[waitlist] VITE_WAITLIST_SCRIPT_URL or VITE_WAITLIST_SCRIPT_TOKEN is not set.',
     );
-    return { success: true };
+    throw new Error('Waitlist is not configured.');
   }
 
   const response = await fetch(SCRIPT_URL, {

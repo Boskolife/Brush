@@ -142,6 +142,14 @@
   &__image {
     display: block;
     width: 100%;
+    background-image: url(../images/phone-bg.png);
+    background-size: 90% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include media('<tablet') {
+      background-size: 100% 100%;
+    }
 
     img {
       display: block;
@@ -156,7 +164,9 @@
     }
 
     &--desktop {
+      max-width: 650px;
       height: 100%;
+      margin: 0 auto;
       transform: scale(0.96);
       opacity: 0;
       transition:
@@ -177,6 +187,183 @@
       img {
         height: 100%;
       }
+    }
+  }
+
+  &__swipe {
+    background-image: url(../images/phone-bg.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 650px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    transform: scale(0.96);
+    opacity: 0;
+    transition:
+      transform 0.45s ease,
+      opacity 0.45s ease;
+
+    .how-it-works__panel.is-active & {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      transform: none;
+      opacity: 1;
+    }
+
+    &--mobile {
+      transform: none;
+      opacity: 1;
+      max-width: 350px;
+      margin: 0 auto;
+      padding: 30px 20px 40px 20px;
+
+      .how-it-works__swipe-stage {
+        min-height: 420px;
+      }
+
+      .how-it-works__swipe-phone {
+        max-width: 200px;
+      }
+
+      .how-it-works__swipe-card {
+        top: 28%;
+        max-width: 190px;
+
+        &.is-direction-left {
+          left: 0;
+        }
+
+        &.is-direction-right {
+          left: 42%;
+        }
+      }
+    }
+  }
+
+  &__swipe-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // aspect-ratio: 420 / 860;
+  }
+
+  &__swipe-phone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    max-width: 325px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.985);
+    transition:
+      opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.is-active {
+      z-index: 2;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &.is-exiting {
+      z-index: 1;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.985);
+    }
+
+    &[hidden] {
+      display: block;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__swipe-card {
+    position: absolute;
+    top: 30%;
+    left: 32%;
+    z-index: 2;
+    max-width: 260px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    pointer-events: none;
+    transition:
+      opacity 0.28s ease,
+      transform 0.28s ease,
+      left 0.28s ease;
+
+    &.is-direction-left {
+      left: 20%;
+    }
+
+    &.is-direction-right {
+      left: 44%;
+    }
+
+    &.is-visible {
+      opacity: 1;
+      transform: translate3d(0, -2%, 0) rotate(-5deg) scale(1.03);
+    }
+
+    &.is-entering {
+      opacity: 0;
+      transform: translate3d(0, 8%, 0) scale(0.94) rotate(-8deg);
+    }
+
+    &.is-swiping-left {
+      animation: how-it-works-swipe-left 0.65s cubic-bezier(0.4, 0, 0.2, 1)
+        forwards;
+    }
+
+    &.is-swiping-right {
+      animation: how-it-works-swipe-right 0.65s cubic-bezier(0.4, 0, 0.2, 1)
+        forwards;
+    }
+
+    &[hidden] {
+      display: block;
+      visibility: hidden;
+    }
+  }
+}
+
+@keyframes how-it-works-swipe-left {
+  to {
+    opacity: 0;
+    transform: translate3d(-125%, 8%, 0) rotate(-16deg);
+  }
+}
+
+@keyframes how-it-works-swipe-right {
+  to {
+    opacity: 0;
+    transform: translate3d(125%, 8%, 0) rotate(16deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-it-works__swipe-card {
+    &.is-swiping-left,
+    &.is-swiping-right {
+      animation: none;
+      opacity: 0;
     }
   }
 }

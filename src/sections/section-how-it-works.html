@@ -14,10 +14,10 @@
       >
         <div class="how-it-works__item is-active">
           <button
-            type="button"
-            class="how-it-works__trigger"
-            role="tab"
             id="how-it-works-tab-1"
+            class="how-it-works__trigger"
+            type="button"
+            role="tab"
             aria-selected="true"
             aria-controls="how-it-works-panel-1"
             data-step="0"
@@ -46,15 +46,16 @@
 
         <div class="how-it-works__item">
           <button
-            type="button"
-            class="how-it-works__trigger"
-            role="tab"
             id="how-it-works-tab-2"
+            class="how-it-works__trigger"
+            type="button"
+            role="tab"
             aria-selected="false"
             aria-controls="how-it-works-panel-2"
             data-step="1"
           >
             <div class="how-it-works__item-content">
+
               {{picture
                 "/images/step-label-2.png"
                 "Step label 2"
@@ -68,20 +69,22 @@
           </button>
 
           <div class="how-it-works__item-media">
-            {{picture
-              "/images/how-it-works-img-2.png"
-              "How it works step 2"
-              class="how-it-works__image how-it-works__image--mobile"
-            }}
+            <div
+              class="how-it-works__swipe how-it-works__swipe--mobile"
+              data-how-it-works-swipe
+              aria-hidden="true"
+            >
+              {{> how-it-works-swipe-inner}}
+            </div>
           </div>
         </div>
 
         <div class="how-it-works__item">
           <button
-            type="button"
-            class="how-it-works__trigger"
-            role="tab"
             id="how-it-works-tab-3"
+            class="how-it-works__trigger"
+            type="button"
+            role="tab"
             aria-selected="false"
             aria-controls="how-it-works-panel-3"
             data-step="2"
@@ -131,11 +134,13 @@
           aria-labelledby="how-it-works-tab-2"
           aria-hidden="true"
         >
-          {{picture
-            "/images/how-it-works-img-2.png"
-            "How it works step 2"
-            class="how-it-works__image how-it-works__image--desktop"
-          }}
+          <div
+            class="how-it-works__swipe"
+            data-how-it-works-swipe
+            aria-hidden="true"
+          >
+            {{> how-it-works-swipe-inner}}
+          </div>
         </div>
 
         <div

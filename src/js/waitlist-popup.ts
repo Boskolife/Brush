@@ -1,11 +1,15 @@
 type PopupView = 'form' | 'done';
 
+import { submitWaitlistEmail } from './waitlist-submit';
+
 const POPUP_ID = 'waitlist-popup';
 const FORM_ID = 'waitlist-form';
 const DONE_AUTO_CLOSE_MS = 5_000;
 const OPEN_SELECTOR = '[data-waitlist-open]';
 const CLOSE_SELECTOR = '[data-popup-close]';
 const VIEW_SELECTOR = '[data-popup-view]';
+const SUBMIT_LABEL_SELECTOR = '.popup__submit-label';
+const ERROR_SELECTOR = '.popup__error';
 
 let doneAutoCloseTimer: ReturnType<typeof setTimeout> | null = null;
 let lastTrigger: HTMLElement | null = null;
@@ -84,6 +88,36 @@ function openPopup(trigger?: HTMLElement | null): void {
   emailInput?.focus();
 }
 
+function clearFormError(form: HTMLFormElement): void {
+  const error = form.querySelector<HTMLElement>(ERROR_SELECTOR);
+  if (!error) return;
+
+  error.hidden = true;
+  error.textContent = '';
+}
+
+function showFormError(form: HTMLFormElement, message: string): void {
+  const error = form.querySelector<HTMLElement>(ERROR_SELECTOR);
+  if (!error) return;
+
+  error.hidden = false;
+  error.textContent = message;
+}
+
+function setFormSubmitting(form: HTMLFormElement, isSubmitting: boolean): void {
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]',
+  );
+  const submitLabel = form.querySelector<HTMLElement>(SUBMIT_LABEL_SELECTOR);
+
+  if (!submitButton || !submitLabel) return;
+
+  submitButton.disabled = isSubmitting;
+  submitLabel.textContent = isSubmitting
+    ? 'Submitting...'
+    : 'Join the waitlist';
+}
+
 function closePopup(): void {
   const popup = getPopup();
   if (!popup) return;
@@ -94,14 +128,18 @@ function closePopup(): void {
   unlockBodyScroll();
 
   const form = document.getElementById(FORM_ID) as HTMLFormElement | null;
-  form?.reset();
+  if (form) {
+    clearFormError(form);
+    setFormSubmitting(form, false);
+    form.reset();
+  }
   setView(popup, 'form');
 
   lastTrigger?.focus({ preventScroll: true });
   lastTrigger = null;
 }
 
-function handleFormSubmit(event: SubmitEvent): void {
+async function handleFormSubmit(event: SubmitEvent): Promise<void> {
   event.preventDefault();
 
   const form = event.currentTarget as HTMLFormElement;
@@ -118,8 +156,21 @@ function handleFormSubmit(event: SubmitEvent): void {
   const popup = getPopup();
   if (!popup) return;
 
-  setView(popup, 'done');
-  scheduleDoneAutoClose();
+  clearFormError(form);
+  setFormSubmitting(form, true);
+
+  try {
+    await submitWaitlistEmail(emailInput.value.trim());
+    setView(popup, 'done');
+    scheduleDoneAutoClose();
+  } catch {
+    showFormError(
+      form,
+      'Something went wrong. Please try again in a moment.',
+    );
+  } finally {
+    setFormSubmitting(form, false);
+  }
 }
 
 function handleKeydown(event: KeyboardEvent): void {

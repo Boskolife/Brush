@@ -138,6 +138,17 @@ If you want to disable automatic WebP conversion (e.g. on CI), set:
 VITE_WEBP_CONVERT=false
 ```
 
+### Waitlist → Google Sheets
+
+1. Create a Google Sheet
+2. Open **Extensions → Apps Script** and paste `scripts/waitlist-google-apps-script.js`
+3. Set `WAITLIST_SECRET` in the script and deploy as a **Web app** (`Anyone` access)
+4. Copy `.env.example` to `.env` and fill in:
+   - `VITE_WAITLIST_SCRIPT_URL` — Web App URL
+   - `VITE_WAITLIST_SCRIPT_TOKEN` — same value as `WAITLIST_SECRET`
+
+For production builds, pass the same variables to your CI/CD environment.
+
 Typical deploy flow:
 
 1. Build the project:

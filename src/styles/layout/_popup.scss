@@ -155,6 +155,24 @@
 
   &__form {
     margin: 0;
+
+    button[type='submit']:disabled {
+      cursor: wait;
+      opacity: 0.75;
+    }
+  }
+
+  &__error {
+    max-width: 320px;
+    margin: 16px auto 0;
+    color: #ad1a1a;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    &[hidden] {
+      display: none;
+    }
   }
 
   &__field {

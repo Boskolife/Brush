@@ -2,6 +2,8 @@ const SWIPE_ROOT_SELECTOR = '[data-how-it-works-swipe]';
 const PHONE_SELECTOR = '[data-swipe-phone]';
 const CARD_SELECTOR = '[data-swipe-card]';
 const MOBILE_SWIPE_CLASS = 'how-it-works__swipe--mobile';
+const PHONE_COUNT = 5;
+const CARD_ID_PREFIX = 'how-it-works-swipe-card-';
 
 const PHONE_IDLE_MS = 300;
 const PHONE_TRANSITION_MS = 900;
@@ -10,27 +12,24 @@ const CARD_IDLE_MS = 750;
 const SWIPE_MS = 650;
 const FINAL_PHONE_IDLE_MS = 2200;
 
-const PHONES = [
-  '/images/phone-1.png',
-  '/images/phone-2.png',
-  '/images/phone-3.png',
-  '/images/phone-4.png',
-  '/images/phone-5.png',
-] as const;
+const SWIPE_DIRECTIONS = ['right', 'left', 'left', 'right'] as const;
 
-const SWIPES = [
-  { card: '/images/card-1.png', direction: 'right' },
-  { card: '/images/card-2.png', direction: 'left' },
-  { card: '/images/card-3.png', direction: 'left' },
-  { card: '/images/Question%20Crd.png', direction: 'right' },
-] as const;
-
-type SwipeDirection = (typeof SWIPES)[number]['direction'];
+type SwipeDirection = (typeof SWIPE_DIRECTIONS)[number];
 
 function wait(ms: number): Promise<void> {
   return new Promise((resolve) => {
     window.setTimeout(resolve, ms);
   });
+}
+
+function getCardSrc(stepIndex: number): string | null {
+  const source = document.getElementById(
+    `${CARD_ID_PREFIX}${stepIndex + 1}`,
+  ) as HTMLImageElement | null;
+
+  if (!source?.src) return null;
+
+  return source.currentSrc || source.src;
 }
 
 function getPhones(root: HTMLElement): HTMLImageElement[] {
@@ -148,28 +147,31 @@ function initSwipeInstance(root: HTMLElement): void {
     const phones = getPhones(root);
     const card = root.querySelector<HTMLImageElement>(CARD_SELECTOR);
 
-    if (!phones.length || !card || phones.length !== PHONES.length) return;
+    if (!phones.length || !card || phones.length !== PHONE_COUNT) return;
 
     isRunning = true;
     const currentRunId = ++runId;
 
     const runLoop = async (): Promise<void> => {
       while (isRunning && currentRunId === runId) {
-        for (let index = 0; index < PHONES.length; index += 1) {
+        for (let index = 0; index < PHONE_COUNT; index += 1) {
           if (!isRunning || currentRunId !== runId) return;
 
           await setActivePhone(phones, index);
           await wait(PHONE_IDLE_MS);
 
-          const swipe = SWIPES[index];
-          if (!swipe) {
+          const direction = SWIPE_DIRECTIONS[index];
+          if (!direction) {
             await wait(FINAL_PHONE_IDLE_MS);
             continue;
           }
 
-          await showCard(card, swipe.card, swipe.direction);
+          const cardSrc = getCardSrc(index);
+          if (!cardSrc) continue;
+
+          await showCard(card, cardSrc, direction);
           await wait(CARD_IDLE_MS);
-          await swipeCard(card, swipe.direction);
+          await swipeCard(card, direction);
         }
       }
     };

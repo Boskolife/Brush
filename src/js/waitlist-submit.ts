@@ -9,7 +9,7 @@ type WaitlistSubmitResult = {
 const SCRIPT_URL = import.meta.env.VITE_WAITLIST_SCRIPT_URL;
 const SCRIPT_TOKEN = import.meta.env.VITE_WAITLIST_SCRIPT_TOKEN;
 
-export function isWaitlistSubmitConfigured(): boolean {
+function isWaitlistSubmitConfigured(): boolean {
   return Boolean(SCRIPT_URL && SCRIPT_TOKEN);
 }
 

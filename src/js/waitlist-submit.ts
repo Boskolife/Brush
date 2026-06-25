@@ -1,3 +1,5 @@
+import { getWaitlistLocation } from './waitlist-location';
+
 type WaitlistSubmitResult = {
   success: boolean;
   duplicate?: boolean;
@@ -21,6 +23,8 @@ export async function submitWaitlistEmail(
     throw new Error('Waitlist is not configured.');
   }
 
+  const location = await getWaitlistLocation();
+
   const response = await fetch(SCRIPT_URL, {
     method: 'POST',
     headers: {
@@ -29,6 +33,7 @@ export async function submitWaitlistEmail(
     body: JSON.stringify({
       email,
       token: SCRIPT_TOKEN,
+      location,
     }),
   });
 

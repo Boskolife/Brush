@@ -10,11 +10,23 @@
  *    - Who has access: Anyone
  * 5. Copy the Web App URL into .env as VITE_WAITLIST_SCRIPT_URL
  *    and use the same secret in VITE_WAITLIST_SCRIPT_TOKEN.
+ * 6. After updating this script, create a new Web app deployment.
  */
 
 const WAITLIST_SECRET =
   '7d9adb21620501d9ec85790f33f494e0710b3ff0a226adc73de686089c6bcb47';
 const SHEET_NAME = 'Waitlist';
+
+function ensureHeaders(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(['Email', 'Subscribed At', 'Location']);
+    return;
+  }
+
+  if (sheet.getLastColumn() < 3) {
+    sheet.getRange(1, 3).setValue('Location');
+  }
+}
 
 function getWaitlistSheet() {
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -24,11 +36,17 @@ function getWaitlistSheet() {
     sheet = spreadsheet.insertSheet(SHEET_NAME);
   }
 
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['Email', 'Subscribed At']);
-  }
+  ensureHeaders(sheet);
 
   return sheet;
+}
+
+function normalizeLocation(location) {
+  const value = String(location || '')
+    .trim()
+    .slice(0, 200);
+
+  return value || 'Unknown';
 }
 
 function parsePayload(e) {
@@ -74,6 +92,7 @@ function doPost(e) {
     const email = String(payload.email || '')
       .trim()
       .toLowerCase();
+    const location = normalizeLocation(payload.location);
 
     if (token !== WAITLIST_SECRET) {
       return jsonResponse({ success: false, error: 'Unauthorized' });
@@ -89,7 +108,7 @@ function doPost(e) {
       return jsonResponse({ success: true, duplicate: true });
     }
 
-    sheet.appendRow([email, new Date().toISOString()]);
+    sheet.appendRow([email, new Date().toISOString(), location]);
 
     return jsonResponse({ success: true });
   } catch (error) {

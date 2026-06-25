@@ -52,6 +52,62 @@
     }
   }
 
+  &__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: linear-gradient(180deg, #f4f4f4 0%, #fefefe 100%);
+    box-shadow: 0px 1px 4px 1px #0000001f;
+
+    @include media('<tablet') {
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+    }
+
+    &:focus-visible {
+      outline: $focus-ring-width solid $focus-ring-color;
+      outline-offset: $focus-ring-offset;
+    }
+  }
+
+  &__close-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 2px;
+      background: #000000;
+      border-radius: 1px;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
   &__panel {
     max-width: 640px;
     width: 100%;

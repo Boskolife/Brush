@@ -17,17 +17,39 @@
             class="hero__arrows"
           }}
         </div>
-        <button class="btn-cta btn-cta--desktop" type="button" data-waitlist-open>
+        <button
+          class="btn-cta btn-cta--desktop"
+          type="button"
+          data-waitlist-open
+        >
           <span>Join the waitlist</span>
         </button>
       </div>
       <div class="hero__image-wrapper">
-        {{picture
-          "/images/hero-img.png"
-          "BRUSH app preview on a phone"
-          class="hero__image"
-        }}
-        <button class="btn-cta btn-cta--mobile" type="button" data-waitlist-open>
+        <div class="hero__image-inner">
+          {{picture
+            "/images/ball.png"
+            "Ball icon"
+            class="hero__image-ball"
+          }}
+          <div class="hero__image-mockup">
+            {{picture
+              "/images/mockup.png"
+              "Mockup of the BRUSH app"
+              class="hero__image"
+            }}
+            <video
+              class="hero__image-video"
+              src="/video/BRUSH_video.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </div>
+        <button class="btn-cta btn-cta--mobile" type="button" data-waitlist-open
+        >
           <span>Join the waitlist</span>
         </button>
       </div>

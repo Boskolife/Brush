@@ -71,9 +71,14 @@
   letter-spacing: -0.01em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: transform 0.3s ease;
 
   &:active {
     background-image: url('/images/btn-bg-click.png');
+  }
+
+  &:hover {
+    transform: scale(1.05);
   }
 
   &--block {
@@ -95,9 +100,5 @@
 
     max-width: 375px;
     margin: 0 auto;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }

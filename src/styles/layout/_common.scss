@@ -51,3 +51,119 @@ body {
   border-radius: 0.25rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 }
+
+.store-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px 28px;
+
+  @include media('<desktop') {
+    justify-content: center;
+  }
+
+  @include media('<tablet') {
+    flex-direction: column;
+  }
+
+  &--desktop {
+    @include media('<=desktop') {
+      display: none;
+    }
+  }
+
+  &--mobile {
+    @include media('>=desktop') {
+      display: none;
+    }
+  }
+
+  &--round {
+    margin-bottom: 25px;
+  }
+
+  &__button,
+  &__link {
+    position: relative;
+    max-width: 280px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+
+    @include media('<tablet') {
+      max-width: 100%;
+    }
+  }
+
+  &__button {
+    &:hover,
+    &:focus-visible {
+      .store-buttons__img--default {
+        opacity: 0;
+      }
+
+      .store-buttons__img--hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Desktop / mouse: popup buttons
+  &__link {
+    display: none;
+  }
+
+  // Touch devices: direct store links
+  @media (hover: none) and (pointer: coarse) {
+    &__button {
+      display: none;
+    }
+
+    &__link {
+      display: block;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    @include media('<tablet') {
+      display: none;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.35s ease;
+
+    &--default {
+      position: relative;
+      opacity: 1;
+    }
+
+    &--hover {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      opacity: 0;
+    }
+
+    &--mobile {
+      display: none;
+
+      @include media('<tablet') {
+        display: block;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,49 @@
+<div
+  id="store-popup-{{#if google}}google{{else}}app{{/if}}"
+  class="store-popup"
+  aria-hidden="true"
+  data-store-popup="{{#if google}}google{{else}}app{{/if}}"
+>
+  <div class="store-popup__backdrop" data-store-close tabindex="-1"></div>
+  <div
+    class="store-popup__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="store-popup-{{#if google}}google{{else}}app{{/if}}-title"
+  >
+    <button
+      class="store-popup__close"
+      type="button"
+      data-store-close
+      aria-label="Close"
+    >
+      <img src="/images/cross.svg" alt="Close" />
+    </button>
+    <div class="store-popup__inner">
+      {{picture
+        "/images/logo.png"
+        ""
+        class="store-popup__logo"
+      }}
+      <h3
+        id="store-popup-{{#if google}}google{{else}}app{{/if}}-title"
+        class="store-popup__title"
+      >
+        Download the app
+      </h3>
+      {{#if google}}
+        {{picture
+          "/images/google-qr.png"
+          "QR code to download BRUSH on Google Play"
+          class="store-popup__qr"
+        }}
+      {{else}}
+        {{picture
+          "/images/app-qr.png"
+          "QR code to download BRUSH on the App Store"
+          class="store-popup__qr"
+        }}
+      {{/if}}
+    </div>
+  </div>
+</div>

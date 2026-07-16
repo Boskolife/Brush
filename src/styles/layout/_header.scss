@@ -34,4 +34,80 @@
       object-fit: contain;
     }
   }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__button,
+  &__link {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+
+    @include media('<tablet') {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__button {
+    &:hover,
+    &:focus-visible {
+      .header__button-img--default {
+        opacity: 0;
+      }
+
+      .header__button-img--hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__link {
+    display: none;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &__button {
+      display: none;
+    }
+
+    &__link {
+      display: block;
+    }
+  }
+
+  &__button-inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__button-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.35s ease;
+
+    &--default {
+      opacity: 1;
+    }
+
+    &--hover {
+      opacity: 0;
+    }
+  }
 }

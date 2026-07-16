@@ -17,9 +17,9 @@
             class="hero__arrows"
           }}
         </div>
-        <a class="btn-cta btn-cta--desktop" href="#watch">
-          <span>Get the app</span>
-        </a>
+        {{> store-buttons
+          classname="store-buttons--desktop"
+        }}
       </div>
       <div class="hero__image-wrapper">
         <div class="hero__image-inner">
@@ -44,10 +44,10 @@
             ></video>
           </div>
         </div>
-        <a class="btn-cta btn-cta--mobile" href="#watch">
-          <span>Get the app</span>
-        </a>
       </div>
+      {{> store-buttons
+        classname="hero-buttons--mobile store-buttons--mobile"
+      }}
     </div>
   </div>
 </section>

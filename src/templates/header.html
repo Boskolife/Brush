@@ -1,17 +1,82 @@
 <header id="header" class="header">
   <div class="container">
     <div class="header__inner">
-      <a class="header__logo" href="index.html#hero" aria-label="BRUSH, back to home">
-        <img
-          src="/images/logo.png"
-          alt=""
-          width="100"
-          height="100"
-        />
+      <a
+        class="header__logo"
+        href="index.html#hero"
+        aria-label="BRUSH, back to home"
+      >
+        <img src="/images/logo.png" alt="" width="100" height="100" />
       </a>
-      <div class="button-wrapper">
-        <a class="header__btn btn" href="#watch">
-          Get the app
+      <div class="header__buttons">
+        <button
+          class="header__button"
+          type="button"
+          data-store-open="app"
+          aria-label="Download on the App Store"
+        >
+          <span class="header__button-inner">
+            <img
+              class="header__button-img header__button-img--default"
+              src="/images/app-store.svg"
+              alt=""
+            />
+            <img
+              class="header__button-img header__button-img--hover"
+              src="/images/app-store-hover.svg"
+              alt=""
+            />
+          </span>
+        </button>
+        <button
+          class="header__button"
+          type="button"
+          data-store-open="google"
+          aria-label="Get it on Google Play"
+        >
+          <span class="header__button-inner">
+            <img
+              class="header__button-img header__button-img--default"
+              src="/images/google-play.svg"
+              alt=""
+            />
+            <img
+              class="header__button-img header__button-img--hover"
+              src="/images/google-play-hover.svg"
+              alt=""
+            />
+          </span>
+        </button>
+
+        <a
+          class="header__link"
+          href="https://apps.apple.com/ua/app/brush-ai/id6761731010"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download on the App Store"
+        >
+          <span class="header__button-inner">
+            <img
+              class="header__button-img"
+              src="/images/app-store.svg"
+              alt=""
+            />
+          </span>
+        </a>
+        <a
+          class="header__link"
+          href="https://play.google.com/store/apps/details?id=com.brush.brush&utm_source=na_Med"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get it on Google Play"
+        >
+          <span class="header__button-inner">
+            <img
+              class="header__button-img"
+              src="/images/google-play.svg"
+              alt=""
+            />
+          </span>
         </a>
       </div>
     </div>

@@ -40,8 +40,6 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_WAITLIST_SCRIPT_URL: ${{ secrets.VITE_WAITLIST_SCRIPT_URL }}
-          VITE_WAITLIST_SCRIPT_TOKEN: ${{ secrets.VITE_WAITLIST_SCRIPT_TOKEN }}
           VITE_WEBP_CONVERT: false
       
       - name: Setup Pages

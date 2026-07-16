@@ -33,8 +33,7 @@ const handlebarsReloadPlugin = (): Plugin => ({
 
     if (
       normalizedPath.includes('/templates/') ||
-      normalizedPath.includes('/sections/') ||
-      normalizedPath.includes('/popups/')
+      normalizedPath.includes('/sections/')
     ) {
       server.ws.send({
         type: 'full-reload',
@@ -46,9 +45,8 @@ const handlebarsReloadPlugin = (): Plugin => ({
   configureServer(server: ViteDevServer) {
     const templatesDir = resolve(__dirname, 'src/templates');
     const sectionsDir = resolve(__dirname, 'src/sections');
-    const popupsDir = resolve(__dirname, 'src/popups');
 
-    server.watcher.add([templatesDir, sectionsDir, popupsDir]);
+    server.watcher.add([templatesDir, sectionsDir]);
   },
 });
 
@@ -66,7 +64,6 @@ export default defineConfig(({ mode }) => {
         partialDirectory: [
           resolve(__dirname, 'src/templates'),
           resolve(__dirname, 'src/sections'),
-          resolve(__dirname, 'src/popups'),
         ],
         reloadOnPartialChange: true,
         helpers: {

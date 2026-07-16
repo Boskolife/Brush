@@ -44,6 +44,7 @@
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  text-decoration: none;
   @include adaptive-value('font-size', 18, 16, 1);
 
   @include media('<tablet') {
@@ -70,6 +71,7 @@
   font-weight: 900;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: transform 0.3s ease;
 
